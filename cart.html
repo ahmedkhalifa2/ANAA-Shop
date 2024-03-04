@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart</title>
+</head>
+
+<body>
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <p>Price</p>
+        <ul id="cart-list">
+            <!-- You Can add by javascript -->
+        </ul>
+        <div class="checkout">
+            <button onclick="checkout()">Proceed to checkout</button>
+            <p>Total: $<span id="total-price">0.00</span></p>
+        </div>
+    </div>
+    </div>
+    <script>
+        const cartList = document.querySelector('#cart-list');
+        const totalPriceSpan = document.getElementById('total-price');
+        let totalPrice = 0;
+
+
+        window.addEventListener("load", function () {
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "product.json", true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+
+                    console.log(data);
+                    const cart = []
+
+                    const productIDs = JSON.parse(localStorage.getItem("productCardIDs")) || [];
+                    console.log(productIDs)
+
+                    const currentUser = localStorage.getItem("currentUser");
+                    console.log(currentUser);
+
+
+                    for (let i = 0; i < productIDs.length; i++) {
+                        const currentProduct = productIDs[i]
+                        const secondKey = currentProduct.productID;
+                        const firstKey = currentProduct.currentuser;
+
+                        console.log(firstKey);
+                        console.log(secondKey);
+
+
+                        const userProductDetails = data.filter(product => secondKey == product.id && firstKey === currentUser);
+                        console.log(userProductDetails);
+
+                        userProductDetails.forEach(product => {
+                            cart.push(product);
+                            ShowInCart(product);
+                        });
+
+
+                    }
+
+
+                    calculateTotalPrice();
+                }
+            }
+            xhr.send();
+        })
+
+        function ShowInCart(product) {
+
+            if (product) {
+                const item = document.createElement("li");
+                item.innerHTML = `<img src=${product.images} alt="">
+                    <div class="item-details">
+
+                        <h3>${product.title}</h3>
+                        <p>In Stock</p>
+                        <select name="" id="quantity-${product.id}">
+                            <option value="1">Qty:1</option>
+                            <option value="2">Qty:2</option>
+                            <option value="3">Qty:3</option>
+                            <option value="4">Qty:4</option>
+                            <option value="5">Qty:5</option>
+                        </select>
+                        <button onclick="deleteItem('${product.id}')">Delete</button>
+                        <button>Save for later</button>
+                    </div>
+                    <div class="item-price">
+                        <p id="total-price-${product.id}">$${product.price}</p>
+                        <div class="coupon">
+                            <p>Save 10%</p>
+                            <a href="">Clip Coupon</a>
+                        </div>
+                    </div>`;
+                cartList.appendChild(item);
+
+                const quantityDropdown = document.getElementById(`quantity-${product.id}`);
+
+                console.log(quantityDropdown)
+                quantityDropdown.addEventListener('change', function () {
+                    updateTotalPrice(product.id, product.price);
+                });
+
+                updateTotalPrice(product.id, product.price);
+            }
+        }
+
+        function updateTotalPrice(productId, price) {
+            const quantityDropdown = document.getElementById(`quantity-${productId}`);
+            const totalPriceElement = document.getElementById(`total-price-${productId}`);
+
+            const quantity = parseInt(quantityDropdown.value, 10);
+            const totalPrice = quantity * price;
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+
+            // Update the total price
+            calculateTotalPrice();
+        }
+
+        function calculateTotalPrice() {
+            totalPrice = 0;
+
+            // Iterate through all items and update the total price
+            document.querySelectorAll('[id^="total-price-"]').forEach(itemPriceElement => {
+                totalPrice += parseFloat(itemPriceElement.textContent.replace('$', ''));
+            });
+
+            // Update the total price
+            totalPriceSpan.textContent = `${totalPrice.toFixed(2)}`;
+        }
+
+        function deleteItem(productId) {
+            // Remove the item from local storage
+            removeFromLocalStorage(productId);
+
+            // Remove the item from the DOM
+            const itemToRemove = document.getElementById(`quantity-${productId}`).closest('li');
+            itemToRemove.remove();
+
+            calculateTotalPrice();
+        }
+
+        function removeFromLocalStorage(productId) {
+            const productIDs = JSON.parse(localStorage.getItem("productCardIDs")) || [];
+
+            const indexToRemove = productIDs.indexOf(productId.toString());
+
+            // If the product ID is found, remove it from the array
+            if (indexToRemove !== -1) {
+                productIDs.splice(indexToRemove, 1);
+
+                // Update local storage
+                localStorage.setItem("productCardIDs", JSON.stringify(productIDs));
+            }
+        }
+
+        function checkout() {
+            const totalPrice = parseFloat(document.getElementById('total-price').textContent.replace('$', ''));
+
+            if (totalPrice > 0) {
+                alert(`Proceeding to checkout. Total amount: $${totalPrice.toFixed(2)}`);
+
+                clearCart();
+            } else {
+                alert("Your cart is empty. Add items before proceeding to checkout.");
+            }
+        }
+
+        function clearCart() {
+            const productIDs = JSON.parse(localStorage.getItem("productCardIDs")) || [];
+            console.log(productIDs)
+
+            const currentUser = localStorage.getItem("currentUser");
+            console.log(currentUser);
+
+
+            for (let i = productIDs.length - 1; i >= 0; i--) {
+                const currentProduct = productIDs[i];
+                const secondKey = currentProduct.productID;
+                const firstKey = currentProduct.currentuser;
+
+                console.log(firstKey);
+                console.log(secondKey);
+
+                if (firstKey === currentUser) {
+                    // Remove the current product from the array
+                    productIDs.splice(i, 1);
+                }
+            }
+            localStorage.setItem("productCardIDs", JSON.stringify(productIDs));
+
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = "";
+
+            document.getElementById('total-price').textContent = "0.00";
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="cart.css">
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>LogIN</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:white;
+    
+}
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+}
+img{
+    width: 160px;
+    height: 110px;
+}
+.login{
+    width: 420px;
+    height: 400px;
+    background-color:snow;
+    color: black;
+    padding: 40px;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    
+}
+.login h1 {
+    font-size: 35px;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.login .input{
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+    position: relative;
+}
+.input input{
+    width: 100%;
+    height: 100%;
+    border:none ;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgb(230, 224, 224);
+    border-radius: 40px;
+    font-size: 16px;
+    color:black;
+    padding: 20px 45px 20px 20px;
+
+}
+.input input ::placeholder{
+    color:whitesmoke;
+}
+.input .remember-foret{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: -10px 0 15px;
+ 
+}
+.remember-foret label input{
+    accent-color:#fff;
+    margin-right: 3px;
+    margin-left: 30px ;
+
+}
+#forgotPasswordLink {
+    text-decoration: none;
+    color: #f5a905;
+    margin-left: 30px;
+    
+  
+
+}
+#forgotPasswordLink :hover{
+    text-decoration: underline;
+}
+.login .btn {
+    width: 100%;
+    /* align-items: center; */
+    height: 45px;
+    background-color: #fcb51c;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600px;
+    cursor: pointer;
+    margin-top: 40px;
+    color: aliceblue;
+    
+}
+.text-color{
+    color: #747070;
+    margin-top: 10px;
+}
+.btn-Create{
+    width: 400px;
+    height: 45px;
+    background-color: #fcb51c;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 200px;
+    /* text-decoration: none; */
+}
+.btn-Create a {
+    text-decoration: none;
+    color: aliceblue;
+}
+form input.error,
+form select.error {
+  border-color: #f91919;
+  background: #ffffff;
+}
+form small {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    color: #f91919;
+  }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="images/logo3-removebg-preview.png" alt="">
+
+        <div class="login">
+        <form action="">
+            <h1>Sign in</h1>
+            <div class="input">
+        <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" >
+            </div>
+            <div class="input">
+            <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" >
+            
+            </div>
+            <div class="remember-foret">
+            <label for="rememberMe">
+                <input type="checkbox" id="rememberMe"> Remember Me</label> 
+            <a href="#" onclick="forgotPassword()" id="forgotPasswordLink">Forget Password</a> 
+
+            </div>
+
+            <span id="incorrectPassOrEmail" style="color: red; position: relative; left: 65px; top: 15px;"></span>
+            <button type="submit" class="btn" > Log in</button>
+
+        </form>
+        
+    </div>
+<p class="text-color">New to Amazon ?</p>
+    <div><button type="submit" class="btn-Create"><a href="sign up.html">Create Your Amazon Account</a></button></div>
+</div>
+    
+</body>
+<script>
+    const form =document.querySelector('form');
+   const passwordinput= document.getElementById("password")
+
+
+   const showError = (field, errorText) => {
+    field.classList.add("error");
+    const errorElement = document.createElement("small");
+    errorElement.classList.add("error-text");
+    errorElement.innerText = errorText;
+    field.closest(".input").appendChild(errorElement);
+}
+document.addEventListener('DOMContentLoaded', function(){
+
+   const savedEmail = localStorage.getItem("email", email);
+    const savedPassword =localStorage.getItem("password", password);
+    if(savedEmail&savedPassword){
+        document.getElementById("email").value = savedEmail;
+
+        document.getElementById("password").value = savedPassword;
+        document.getElementById("rememberMe").checked=true;
+    }
+});
+
+const formData = (ele) => {
+    ele.preventDefault();
+
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    // const rememberMe = document.getElementById("rememberMe").checked;
+    
+    const email = emailInput.value.trim();
+    const password = passwordinput.value.trim();
+
+    // if(rememberMe){
+    //     localStorage.setItem('savedEmail',email)
+    //     localStorage.setItem('savedPassword',password);
+    // }else{
+    //     localStorage.removeItem('savedEmail');
+    //     localStorage.removeItem('savedPassword');
+    // }
+
+
+    const emailPattern=  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    const passPattern = /^[0-9]{3,9}[a-zA-Z]{2,}$/;
+
+    document.querySelectorAll(".input .error").forEach(field => field.classList.remove("error"));// Clearing previous error messages
+    document.querySelectorAll(".error-text").forEach(errorText => errorText.remove());
+
+    if (!emailPattern.test(email)) {
+        showError(emailInput, "Enter a valid email address");
+    }
+    
+    if (!passPattern.test(password)) {
+        showError(passwordinput, "Enter a valid password");
+    }
+
+
+
+
+    const errorInputs = document.querySelectorAll(".input .error");
+    if (errorInputs.length > 0) return;
+
+   /////////////////////////////////////////////////////////////////////////////////
+    let incorrectPassOrEmail = document.getElementById("incorrectPassOrEmail")
+    let usersdata = JSON.parse(localStorage.getItem("users"))
+    for(let user of usersdata){
+        if(user.email == email && user.password == password ){
+            incorrectPassOrEmail.innerHTML=""
+            localStorage.setItem("currentUser",user.fullName)
+            window.location.href="index.html"
+           
+        }
+        else{
+            
+            incorrectPassOrEmail.innerHTML="incorrect Password or Email"
+        }
+    }
+    
+}///////////////////////////////////////////////////////////////////////////////////
+
+function forgotPassword() {
+
+  const userEmail = prompt("Enter your email to reset password:");
+
+  if (userEmail && email !== "") {
+
+    alert('Password reset instructions sent to your email.');
+  } else {
+    alert('Invalid email. Please enter a valid email address.');
+  }
+}
+
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+forgotPasswordLink.addEventListener('click', forgotPassword);
+
+
+form.addEventListener("submit", formData);
+
+
+</script>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sign up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      background-color: rgb(255, 255, 255);
+
+    }
+
+  img{
+    width: 160px;
+    height: 110px;
+   }
+
+    form {
+      padding: 25px;
+      background-color: snow;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 7px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    form h2 {
+      font-size: 27px;
+      text-align: center;
+      margin: 0px 0 30px;
+    }
+
+    form .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    form label {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    form input,
+    form select {
+      height: 45px;
+      padding: 10px;
+      width: 100%;
+      font-size: 15px;
+      outline: none;
+      background: #fff;
+      border-radius: 3px;
+      border: 1px solid #dadada;
+    }
+
+    form input:focus,
+    form select:focus {
+      border-color: #9a9a9a;
+    }
+
+    form input.error,
+    form select.error {
+      border-color: #f91919;
+      background: #f9f0f1;
+    }
+
+    form small {
+      font-size: 14px;
+      margin-top: 5px;
+      display: block;
+      color: #f91919;
+    }
+
+    form .password i {
+      position: absolute;
+      right: 0px;
+      height: 45px;
+      top: 28px;
+      font-size: 13px;
+      line-height: 45px;
+      width: 45px;
+      cursor: pointer;
+      color: #939393;
+      text-align: center;
+    }
+
+    .submit-btn {
+      margin-top: 30px;
+    }
+
+    .submit-btn input {
+      color: white;
+      border: none;
+      height: auto;
+      font-size: 16px;
+      padding: 13px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      text-align: center;
+      background: #f5a905;
+      transition: 0.2s ease;
+    }
+
+    .submit-btn input:hover {
+      background: #575247;
+    }
+  </style>
+</head>
+
+<body>
+
+    <img src="images/logo3-removebg-preview.png" alt="">
+
+  <form action="">
+    <h2>Create Account</h2>
+    <div class="form-group fullname">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="Enter your full name">
+    </div>
+    <div class="form-group email">
+      <label for="email">Email Address</label>
+      <input type="text" id="email" name="email" placeholder="Enter your email address">
+    </div>
+    <div class="form-group password">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+      <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
+    </div>
+    <div class="form-group date">
+      <label for="date">Birth Date</label>
+      <input type="date" id="date" placeholder="Select your date">
+    </div>
+    <div class="form-group gender">
+      <label for="gender">Gender</label>
+      <select id="gender">
+        <option value="" selected disabled>Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <div class="form-group submit-btn">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+  <script>
+
+    const form = document.querySelector("form");
+    const passwordInput = document.getElementById("password");
+    const passToggleBtn = document.getElementById("pass-toggle-btn");
+
+    const showError = (field, errorText) => {
+      field.classList.add("error");
+      const errorElement = document.createElement("small");
+      errorElement.classList.add("error-text");
+      errorElement.innerText = errorText;
+      field.closest(".form-group").appendChild(errorElement);
+    }
+
+    // Function to save user data to localStorage
+    const saveUserData = (userData) => {
+      const usersData = JSON.parse(localStorage.getItem("users")) || [];
+      usersData.push(userData);
+      localStorage.setItem("users", JSON.stringify(usersData));
+    }
+
+
+
+
+    const formData = (event) => {
+      event.preventDefault();
+
+      const fullNameInput = document.getElementById("fullname");
+      const emailInput = document.getElementById("email");
+      const dateInput = document.getElementById("date");
+      const genderInput = document.getElementById("gender");
+
+      const fullName = fullNameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      const date = dateInput.value;
+      const gender = genderInput.value;
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const passPattern = /^[0-9]{5,9}[a-zA-Z]{2,}$/;
+
+      document.querySelectorAll(".form-group .error").forEach(field => field.classList.remove("error"));
+      document.querySelectorAll(".error-text").forEach(errorText => errorText.classList.remove());
+
+      if (fullName === "") {
+        showError(fullNameInput, "Enter your full name");
+      }
+      if (!emailPattern.test(email)) {
+        showError(emailInput, "Enter a valid email address");
+      }
+      if (!passPattern.test(password)) {
+        showError(passwordInput, "Enter a valid password");
+      }
+      if (date === "") {
+        showError(dateInput, "Select your date of birth");
+      }
+      if (gender === "") {
+        showError(genderInput, "Select your gender");
+      }
+
+      // Check for any remaining errors before form submission
+      const errorInputs = document.querySelectorAll(".form-group .error");
+      if (errorInputs.length > 0) return;
+
+      // Save user data to localStorage
+      const userData = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        dateOfBirth: date,
+        gender: gender
+      };
+
+      saveUserData(userData);
+
+      window.location.href = "index.html"
+      localStorage.setItem("currentUser", userData.fullName)
+
+      form.reset();
+    }
+
+    // Icon password
+    passToggleBtn.addEventListener('click', () => {
+      passToggleBtn.className = passwordInput.type === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    });
+
+    form.addEventListener("submit", formData);
+
+
+
+  </script>
+</body>
+
+</html>

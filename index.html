@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping site: Shop Online for Mobiles, Watches, Shoes and More - ANAA</title>
+
+    <!--css file-->
+    <link rel="stylesheet" href="style.css" />
+
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container container-header">
+            <div class="logo-container border-white">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo3-removebg-preview.png" alt="">
+                    </a>
+                </div>
+             </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" />
+                <button class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+
+            <div class="language-container border-white">
+                <p>English</p>
+            </div>
+
+                <div class="login-container border-white">
+                    <p>Hello, <span class="success-sign"></span></p>
+                    <!-- <p class="account">Account & Lists</p> -->
+                </div>
+        
+
+            <div class="cart-button border-white">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="cart.html">Cart</a>
+            </div>
+        </div>
+    </header>
+
+    <!--navigation-->
+    <nav class="nav">
+        <div class="container container-nav">
+            <ul class="list-container">
+                <li class="border-white" id="open-nav-sidebar">
+                    <span class="open-nav-slider">
+                        <i class="fa-solid fa-bars"></i>
+                    </span>
+                </li>
+                <li class="border-white listNav list-Top-Rated">Top Rated</li></a>
+                <li class="border-white listNav" data-value="smartphones">Smartphones</li>
+                <li class="border-white listNav" data-value="sunglasses">Sunglasses</li>
+                <li class="border-white listNav" data-value="womens-watches">Watches</li>
+                <li class="border-white listNav" data-value="womens-dresses">Womens Dresses</li>
+                <li class="border-white listNav" data-value="mens-shirts">Mens Shirts</li>
+                <li class="border-white listNav" data-value="home-decoration">Home Decoration</li>
+                <li class="border-white listNav" data-value="fragrances">Fragrances</li>
+                <li class="border-white listNav" data-value="groceries">Groceries</li>
+                <li class="border-white listNav" data-value="furniture">Furniture</li>
+                <li class="border-white listNav" data-value="skincare">Skincare</li>
+                <li class="border-white listNav" data-value="laptops">Laptops</li>
+                <li class="border-white listNav" data-value="mens-shoes">Mens Shoes</li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!--sidebar navigation-->
+    <div class="sidebar" id="sidebar-id">
+        <div class="sidebar-left-part">
+            <div class="sidebar-top">
+                <i class="fa-solid fa-circle-user"></i>
+                <h2>Hello, <span class="success-sign">sign in</span></h2>
+            </div>
+            <div class="sidebar-wrap">
+                <div class="sidebar-item">
+                    <h2>Shop By Category</h2>
+                    <p class="Side-Top-Rated">Top Rated</p>
+                    <p class="side" data-value="smartphones">Smartphones</p>
+                    <p class="side" data-value="laptops"> Laptops</p>
+                    <p class="side" data-value="mens-watches">Watches</p>
+                </div>
+                <div class="sidebar-item">
+                    <h2>Help</h2>
+                    <p><a href="profile.html">Your profile</a></p>
+                    <p id="sing-out">sign out</p>
+                </div>
+            </div>
+        </div>
+        <button id="sidebar-close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+
+    <!-- results -->
+
+    <div id="searchResults" style="display: none;"></div>
+
+
+
+
+    <!--image slider -->
+    <section>
+        <div class="image-container">
+            <div class="images">
+                <div class="image-item">
+                    <img name="slide">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--product container card-->
+    <main class="main">
+        <div class="card-product-container container">
+            <div class="card-product">
+                <h2>Womens Dresses</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/womens-dresses (1).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/womens-dresses (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/womens-dresses (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/womens-dresses (4).jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="womens-dresses">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Smartphones</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/phone 1.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/phone 2.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/phone 3.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/phone 4.jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="smartphones">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Sunglasses</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/sunglasses.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/sunglasses (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/sunglasses (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/sunglasses (1).webp">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="sunglasses">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Watches</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/mens-watches (1).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-watches (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-watches (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-watches (4).jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="mens-watches">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Mens Shirts</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/mens-shirts (4).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shirts (5).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shirts (1).png">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shirts.jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="mens-shirts">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Home Decoration</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/home-decoration (1).webp">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/home-decoration (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/home-decoration (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/home-decoration.jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="home-decoration">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Fragrances</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/fragrances (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/fragrances (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/fragrances (1).webp">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/fragrances (4).jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="fragrances">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Groceries</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/groceries (1).png">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/groceries (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/groceries (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/groceries.jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="groceries">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Laptops</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/laptops 1.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/laptops 2.png">
+
+                    </div>
+                    <div class="product-img">
+                        <img src="images/laptops 4.jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/laptops 4.jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="laptops">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Skincare</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/skincare (1).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/skincare (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/skincare (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/skincare (4).png">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="skincare">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Furniture</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/furniture (1).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/furniture (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/furniture (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/furniture (4).jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="furniture">see more</button>
+            </div>
+            <div class="card-product">
+                <h2>Mens Shoes</h2>
+                <div class="product-images">
+                    <div class="product-img">
+                        <img src="images/mens-shoes (1).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shoes (2).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shoes (3).jpg">
+                    </div>
+                    <div class="product-img">
+                        <img src="images/mens-shoes (4).jpg">
+                    </div>
+                </div>
+                <button class="card-product-btn" value="mens-shoes">see more</button>
+            </div>
+        </div>
+        <section class="top-rated" id="topRatedSection">
+            <div class="heading">
+                <h1>Top Rated</h1>
+                <button class="btn-toprated">See More</button>
+            </div>
+            <div class="rated-container">
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#" class="footer-title">
+            Back to top
+        </a>
+        <div class="footer-items">
+            <a href="index.html">
+                <img src="images/logo3-removebg-preview.png" alt="">
+            </a>
+            <ul>
+                <h2>Get to Know Us</h2>
+                <li>About us</li>
+                <li>Careers</li>
+                <li>Press Release</li>
+                <li>ANAA Science</li>
+            </ul>
+            <ul>
+                
+                <h2>Connect with Us</h2>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+            </ul>
+            <ul>
+                <h2>Make Money with Us</h2>
+                <li>Sell on ANAA</li>
+                <li>Sell under ANAA Accelerator</li>
+                <li>Protect and Build Your Brand</li>
+                <li>ANAA Global Selling</li>
+                <li>Become an Affiliate</li>
+                <li>Fulfillment by ANAA</li>
+                <li>Advertise Your Products</li>
+                <li>ANAA Pay on Merchants</li>
+            </ul>
+            <ul>
+                <h2>Let Us Help You</h2>
+                <li>Your Account</li>
+                <li>Return Centre</li>
+                <li>100% Purchase Protection</li>
+                <li>ANAA App Download</li>
+                <li>Help</li>
+            </ul>
+        </div>
+        <div class="footer-items" style="color:white; padding:15px 0"> &copy;2023-2023, ANAA.com</div>
+    </footer>
+
+    <script src="search.js"></script>
+    <script src="javascript.js"></script>
+
+    <script>
+        let categoryContainer = document.querySelector(".card-product-container")
+        let listContainer = document.querySelector(".list-container")
+        let SideContainer = document.querySelector(".sidebar-item")
+        let topRatedBtn = document.querySelector(".btn-toprated")
+        let topRatedContainer = document.querySelector(".rated-container")
+        let topRatedSection = document.querySelector("#topRatedSection")
+        let listTopRated = document.querySelector(".list-Top-Rated")
+        let SideTopRated = document.querySelector(".Side-Top-Rated")
+        let successSign = document.getElementsByClassName("success-sign")[0]
+        let successSignSide = document.getElementsByClassName("success-sign")[1]
+        let singOut = document.getElementById("sing-out")
+        
+        let xhr = new XMLHttpRequest()
+        xhr.open("get", "product.json")
+        xhr.send()
+        let data
+        xhr.addEventListener("load", function () {
+            if (xhr.status == 200) {
+                data = JSON.parse(xhr.response)
+            }
+        })
+        categoryContainer.addEventListener("click", function (eve) {
+            if (eve.target.classList.contains("card-product-btn")) {
+                for (let product of data) {
+                    if (product.category == eve.target.value) {
+                        localStorage.setItem("productCategory", eve.target.value)
+                        window.location.href = "product.html"
+
+                    }
+                }
+
+            }
+        })
+        listContainer.addEventListener("click", function (eve) {
+            if (eve.target.classList.contains("listNav")) {
+                for (let product of data) {
+                    if (product.category == eve.target.dataset.value) {
+                        localStorage.setItem("productCategory", eve.target.dataset.value)
+                        window.location.href = "product.html"
+                    }
+                }
+            }
+        })
+
+        SideContainer.addEventListener("click", function (eve) {
+            if (eve.target.classList.contains("side")) {
+                for (let product of data) {
+                    if (product.category == eve.target.dataset.value) {
+                        localStorage.setItem("productCategory", eve.target.dataset.value)
+                        window.location.href = "product.html"
+                    }
+                }
+            }
+        })
+
+        topRatedBtn.addEventListener("click", function () {
+            localStorage.setItem("productCategory", "top rated")
+            window.location.href = 'product.html'
+        })
+
+        ///////////////////////////////////////// hello sign on click ///////////////////
+       
+        successSign.addEventListener("click",function(){
+            if(successSign.innerHTML == "sign in"){
+                window.location.href = "sign in.html"
+                singOut.innerHTML = "sign in"
+
+            }else{
+                window.location.href = "profile.html"
+                singOut.innerHTML = "sign out"
+            }
+            
+        })
+       
+
+        
+
+        //////////////////// currentUser sign out //////////////////
+
+        singOut.addEventListener("click",function(){
+            localStorage.setItem("currentUser","sign in")
+            window.location.href="index.html"
+        })
+
+         //////////////////// currentUser sign out //////////////////
+
+
+
+         
+        window.addEventListener("load", function () {
+
+             //////////////////////////////  currentUser       ////////////////////////////
+           
+                successSign.innerHTML=`${localStorage.getItem("currentUser")}`
+                successSignSide.innerHTML=`${localStorage.getItem("currentUser")}`
+
+                if(successSign.innerHTML == "sign in"){
+                singOut.innerHTML = "sign in"
+
+            }else{
+                singOut.innerHTML = "sign out"
+
+            }
+
+                /////////////////////   /////////////////////////
+            singOut.addEventListener("click",function(){
+            if(successSign.innerHTML == "sign in"){
+                window.location.href = "sign in.html"
+
+            }else{
+                window.location.href = "index.html"
+                
+            }
+        })
+
+            /////////////////////////////////////////////////////////
+            let count = 0
+            for (let product of data) {
+                if (product.rating >= 4.7) {
+                    count++
+                    topRatedContainer.innerHTML += `<div class="rated-product">
+                    <h4>${product.title}</h4>
+                    <div class="product-data">
+                        <div class="product-img">
+                            <img src="${product.images[0]}" />
+                        </div>
+                        <p class="product-rating"><span>Rating: </span>${product.rating} $</p>
+                        <span class="product-price"><span>Price: </span>${product.price} $</span>
+                    </div>
+                </div>`
+                }
+                if (count >= 8) {
+                    break
+                }
+            }
+        })
+
+        listTopRated.addEventListener("click", function () {
+            topRatedSection.scrollIntoView({
+                behavior: "smooth"
+            })
+        })
+        SideTopRated.addEventListener("click", function () {
+            topRatedSection.scrollIntoView({
+                behavior: "smooth"
+            })
+        })
+    </script>
+
+
+
+</body>
+
+</html>
